@@ -82,8 +82,11 @@ frappe.ui.form.on('Job Quotation', {
     },
      refresh: function(frm) {
         frm.get_field('items').grid.cannot_add_rows = true;
-        frm.get_field('items').grid.cannot_delete_rows = true;
+        // frm.get_field('items').grid.cannot_delete_rows = true;
         frm.refresh_field('items');
+        frm.get_field('items').grid.wrapper.find('.grid-remove-rows').hide();
+
+
         calculate_totals(frm);
 
         if (frm.doc.docstatus === 1) {
@@ -129,6 +132,8 @@ frappe.ui.form.on('Job Quotation', {
             });
         }
     },
+    start_date: calculate_duration,
+    end_date: calculate_duration,
     onload: function(frm) {
         calculate_totals(frm);
         frm.set_query('unit', 'items', function() {
@@ -156,6 +161,16 @@ frappe.ui.form.on('Job Quotation', {
         });
     },
     quotation(frm) {
+
+         if (!frm.doc.quotation) {
+            return; 
+        }
+
+        if (!frm.doc.customer_name) {
+            frappe.msgprint("Please select Customer first");
+            frm.set_value('quotation', ''); 
+            return;
+        }
         if (frm.doc.quotation) {
             frappe.call({
                 method: "frappe.client.get",
@@ -180,12 +195,17 @@ frappe.ui.form.on('Job Quotation', {
             });
         }
     },
-    start_date: calculate_duration,
-    end_date: calculate_duration
+    
 });
 
 function calculate_duration(frm) {
     if (frm.doc.start_date && frm.doc.end_date) {
+
+        if (frm.doc.end_date < frm.doc.start_date) {
+            frappe.msgprint("End Date cannot be earlier than Start Date");
+            frm.set_value('end_date', "");
+            return;
+        }
         let diff = frappe.datetime.get_day_diff(
             frm.doc.end_date,
             frm.doc.start_date
@@ -218,5 +238,7 @@ frappe.ui.form.on('Job Quotation Item', {
                 }
             };
         };
-    }
+        
+    },
+    
 });

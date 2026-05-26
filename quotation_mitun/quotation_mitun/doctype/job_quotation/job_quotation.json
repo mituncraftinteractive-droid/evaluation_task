@@ -43,8 +43,10 @@
   {
    "fieldname": "customer_name",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Customer Name",
-   "options": "Customer"
+   "options": "Customer",
+   "reqd": 1
   },
   {
    "fetch_from": "customer_name.email_id",
@@ -76,13 +78,17 @@
   {
    "fieldname": "project_title",
    "fieldtype": "Data",
-   "label": "Project Title"
+   "in_list_view": 1,
+   "label": "Project Title",
+   "reqd": 1
   },
   {
    "fieldname": "project",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Project",
-   "options": "Project"
+   "options": "Project",
+   "reqd": 1
   },
   {
    "fieldname": "project_type",
@@ -136,8 +142,10 @@
   {
    "fieldname": "quotation",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Quotation",
-   "options": "Quotation"
+   "options": "Quotation",
+   "reqd": 1
   },
   {
    "allow_on_submit": 1,
@@ -196,7 +204,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-05-26 13:03:37.629367",
+ "modified": "2026-05-26 17:45:50.702063",
  "modified_by": "Administrator",
  "module": "Quotation Mitun",
  "name": "Job Quotation",
