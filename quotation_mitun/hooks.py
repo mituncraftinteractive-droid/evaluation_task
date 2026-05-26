@@ -263,5 +263,11 @@ fixtures = [
     {
         "dt": "Role",
         "filters": [["name", "in", ["Quotation Approver", "Quotation Reviewer"]]]
+    },
+    {
+        "dt": "Custom DocPerm",
+        "filters": [
+            ["parent", "in", ["Job Quotation"]],
+        ]
     }
 ]
