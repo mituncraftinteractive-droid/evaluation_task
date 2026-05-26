@@ -247,3 +247,21 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+fixtures = [
+    {
+        "dt": "Workflow",
+        "filters": [["name", "=", "Job Quotation Workflow"]]
+    },
+    {
+        "dt": "Workflow State",
+        "filters": [["name", "in", ["Draft", "Reviewed", "Submitted"]]]
+    },
+    {
+        "dt": "Workflow Action Master",
+        "filters": [["name", "in", ["Submit"]]]   
+    },
+    {
+        "dt": "Role",
+        "filters": [["name", "in", ["Quotation Approver", "Quotation Reviewer"]]]
+    }
+]
